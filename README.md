@@ -54,15 +54,15 @@ Users CRUD (./users):
 Used 'Log in' function to verify user is logged to access to post, update, read or delete ads.
 
 User Schema
-        - username: string, required
-        - email: string, required
-        - birthday: date, required
-        - age: number
-        - password: string, required
+- username: string, required
+- email: string, required
+- birthday: date, required
+- age: number
+- password: string, required
 Ads Schema
-        - created_by: string, required
-        - created_at: date, required
-        - ad_title: string, required
-        - ad_content: string, required
+- created_by: string, required
+- created_at: date, required
+- ad_title: string, required
+- ad_content: string, required
 
 authMiddleware: it takes token from the header and it is used to protect the ads router.

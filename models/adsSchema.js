@@ -19,6 +19,11 @@ const adSchema = mongoose.Schema({
     ad_content: {
         type: String,
         required: true
+    },
+
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 

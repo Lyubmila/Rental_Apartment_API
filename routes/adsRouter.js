@@ -18,6 +18,7 @@ router.get('/', authMiddleware, async (req,res) =>{
 // Create Ad
 router.post('/', authMiddleware, async (req, res) =>{
     const adsData = req.body
+    adsData.user = req.user.id
     console.log(adsData);
 
     try {
@@ -61,7 +62,18 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     const id = req.params.id
 
     try {
-        const ad = await AdModel.findByIdAndDelete(id)
+        const adToDelete = await AdModel.findById(id)
+        console.log(adToDelete.user._id.toString(), '||', req.user.id);
+        if (adToDelete.user._id.toString() !== req.user.id) {  //checking that it is same user who created this todos and user who request delete this todo
+            
+        return res.status(400).json({msg: 'Not Authorized!'})   
+           
+        }
+        
+        
+        //console.log(adToDelete.user, '||', req.user.id);
+
+        await AdModel.findByIdAndDelete(id)
         res.status(200).json({msg: " Ad was deleted!"})
     } catch (error) {
         console.log(error);
