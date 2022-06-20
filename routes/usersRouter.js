@@ -1,5 +1,6 @@
 const express = require('express')
 const UserModel = require('../models/userSchema')
+const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -18,8 +19,20 @@ router.get('/', async (req,res) =>{
 })
 
 // Create or register a new user
-router.post('/', async (req, res) => {
+router.post('/', [
+    check('username', "Username is required from Middleware!").notEmpty(),   //this Middleware for express-validator
+    check('email', "Please use a valid email from Middleware").isEmail(),
+    check('password', "Please add six or more characters").isLength({ min: 6 }),
+    check('password', "Please enter a password").notEmpty()
+], async (req, res) => {
     const userData = req.body
+
+    const errors = validationResult(req)
+    // Checks for validation errors
+    if (!errors.isEmpty()) {     //we are checking that is not empty
+        return res.status(400).json(errors.array())
+    }
+
     console.log(userData);
     try {
          // checking if there is an user with this email in the db
