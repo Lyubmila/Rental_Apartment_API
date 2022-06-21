@@ -59,6 +59,7 @@ User Schema
 - birthday: date, required
 - age: number
 - password: string, required
+
 Ads Schema
 - created_by: string, required
 - created_at: date, required

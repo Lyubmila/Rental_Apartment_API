@@ -51,17 +51,20 @@ router.put('/:id', authMiddleware, async (req, res) => {
 
     try {
 
-        // const adToUpdate = await AdModel.findById(id)
-        // console.log(adToUpdate.user._id.toString(), '||', req.user.id);
-        // if (adToUpdate.user._id.toString() !== req.user.id) {  //checking that it is same user who created this ad and user who request to update this ad
+        const adToUpdate = await AdModel.findById(id)
+        console.log(adToUpdate.user._id.toString(), '||', req.user.id);
+        if (adToUpdate.user._id.toString() !== req.user.id) {  // check to see if user logged in is the author of the ad
             
-        // return res.status(400).json({msg: 'Not Authorized!'})      
-        // }
+        return res.status(400).json({msg: 'Not Authorized!'})      
+        }
 
         const ad = await AdModel.findByIdAndUpdate(id, newAdData, {new:true})
         res.status(202).json(ad)
     } catch (error) {
         console.log(error);
+        res.status(400).json({
+        msg: 'Id not found'
+        })
     }
 })
 
