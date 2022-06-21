@@ -6,7 +6,7 @@ A Rental Apartment API allows only authorized users can make some changes. User 
 
 ### Technologies Used
 
-NodeJS, Express, MongoDB, Mongoose, Postman, Helmet, Bcrypt, Validator, Json Web Token
+NodeJS, Express, MongoDB, Mongoose, Postman, Helmet, Bcrypt, Validator, Json Web Token, HEROKU
 
 ### ENV Variables
 
@@ -18,15 +18,15 @@ NodeJS, Express, MongoDB, Mongoose, Postman, Helmet, Bcrypt, Validator, Json Web
 
 Clone the project. Open with VS Code and you have to install all dependencies. 
 
-npm init -y 
-npm i bcrypt
-npm i dotenv
-npm i express
-npm i helmet
-npm i jsonwebtoken
-npm i mongoose
-npm i morgan
-npm i express-validator
+- npm init -y 
+- npm i bcrypt
+- npm i dotenv
+- npm i express
+- npm i helmet
+- npm i jsonwebtoken
+- npm i mongoose
+- npm i morgan
+- npm i express-validator
 
 Use the comand "nodemon server.js" for running the app. 
 
@@ -66,3 +66,5 @@ Ads Schema
 - ad_content: string, required
 
 authMiddleware: it takes token from the header and it is used to protect the ads router.
+
+HEROKU is used for deployment this project https://dashboard.heroku.com/apps/apt-rent-app/
